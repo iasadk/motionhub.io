@@ -3,10 +3,11 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 type Props = {
   title: string;
-  onClick?: React.MouseEventHandler
+  slug: string;
+  onClick?: React.MouseEventHandler;
 };
 
-const AnimatedLink = ({ title, onClick }: Props) => {
+const AnimatedLink = ({ title, onClick, slug }: Props) => {
   const [isHovered, setIsHovered] = useState<boolean>(false);
   return (
     <motion.div
@@ -14,9 +15,20 @@ const AnimatedLink = ({ title, onClick }: Props) => {
       onMouseLeave={() => setIsHovered(false)}
       className="relative cursor-pointer overflow-hidden"
     >
-      <AnimatedWord title={title} animation={letterAnimation} isHovered={isHovered}/>
+      <AnimatedWord
+        title={title}
+        animation={letterAnimation}
+        isHovered={isHovered}
+        slug={slug}
+      />
       <div className="absolute top-0">
-        <AnimatedWord title={title} animation={letterAnimationTwo} isHovered={isHovered} onClick={onClick}/>
+        <AnimatedWord
+          title={title}
+          animation={letterAnimationTwo}
+          isHovered={isHovered}
+          slug={slug}
+          onClick={onClick}
+        />
       </div>
     </motion.div>
   );
@@ -65,15 +77,18 @@ const AnimatedWord = ({
   title,
   animation,
   isHovered,
-  onClick
+  onClick,
+  slug,
 }: {
   title: string;
+  slug: string;
   animation: any;
-  isHovered: boolean,
-  onClick?: React.MouseEventHandler,
+  isHovered: boolean;
+  onClick?: React.MouseEventHandler;
 }) => {
   return (
-    <motion.span
+    <motion.a
+      href={"/" + slug}
       variants={titleAnimation}
       initial="rest"
       animate={isHovered ? "hover" : "rest"}
@@ -93,7 +108,7 @@ const AnimatedWord = ({
           </motion.span>
         )
       )}
-    </motion.span>
+    </motion.a>
   );
 };
 export default AnimatedLink;

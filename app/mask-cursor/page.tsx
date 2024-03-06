@@ -34,7 +34,7 @@ const Page = (props: Props) => {
         </p>
       </motion.div>
       <div className="w-full h-full flex justify-center items-center xl:leading-[5rem]">
-        <p className="text-[20px] md:text-[40px] lg:text-[40px] xl:text-[60px] w-full lg:w-[64%] xl:w-[55%] mx-auto border-2">
+        <p className="text-[20px] md:text-[40px] lg:text-[40px] xl:text-[60px] w-full lg:w-[64%] xl:w-[55%] mx-auto ">
           I&apos;m a
           <span className="text-[#EC4E39] mx-4">selectively skilled</span>
           product designer with strong focus on producing high quality &

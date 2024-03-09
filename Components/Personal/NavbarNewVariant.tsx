@@ -11,6 +11,8 @@ import {
   NavOutwardButtonAnimation,
   outwardButtonAnimation,
 } from "@/framer-variants/NavOutwardButtonAnimation";
+import { usePathname, useRouter } from "next/navigation";
+import { converSlugToTitle } from "@/utils/util";
 type Props = {};
 // fixed top-0 left-0 right-0
 const logoAnimation = {
@@ -37,11 +39,12 @@ const NavbarNew = (props: Props) => {
   const [isHovered, setisHovered] = useState(false);
   const [isOutwardHovered, setIsOutwardHovered] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const pathname = usePathname();
   return (
-    <nav className="flex justify-center items-center px-2 py-4 ">
+    <nav className="flex justify-center items-center px-2 py-4">
       <motion.div
         layout
-        className="border rounded-full w-full sm:w-3/5 md:w-[75%] lg:w-[50%] px-1 py-1 border-[#ADADAD] uppercase flex justify-between items-center"
+        className="border rounded-full w-full sm:w-3/5 md:w-[75%] lg:w-[50%] px-1 py-1 border-[#ADADAD] uppercase flex justify-between items-center mx-auto"
       >
         {/* For Mobile */}
         <motion.div className="xs:hidden">
@@ -82,7 +85,10 @@ const NavbarNew = (props: Props) => {
 
         <AnimatePresence>
           <motion.div className="hidden md:flex font-medium gap-1 items-center mr-[5rem] relative">
-            <AnimatedLink title={"Masking Cursor"} slug="mask-cursor" />
+            <AnimatedLink
+              title={converSlugToTitle(pathname.slice(1))}
+              slug="mask-cursor"
+            />
             <IoIosArrowDown
               className="cursor-pointer"
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
@@ -98,15 +104,22 @@ const NavbarNew = (props: Props) => {
                 className="w-[180px] border-2 rounded-xl absolute top-0 translate-y-8 bg-white z-10"
               >
                 {[
-                  "Awwward Landing Page",
-                  "Jiggle Menu",
-                  "DOTD",
-                  "SVG path motion",
-                  "SVG path motion",
+                  {
+                    title: "Framer Link",
+                    slug: "framer-link",
+                  },
+                  {
+                    title: "Mask Cursor",
+                    slug: "mask-cursor",
+                  },
+                  {
+                    title: "Blend Mode Cursor",
+                    slug: "blend-mode-cursor",
+                  },
                 ].map((x) => (
-                  <p className="p-2 cursor-pointer" key={x}>
-                    {x}
-                  </p>
+                  <Link href={x.slug} className="p-2" key={x.slug}>
+                    {x.title}
+                  </Link>
                 ))}
               </motion.div>
             )}

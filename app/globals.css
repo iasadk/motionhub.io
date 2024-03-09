@@ -3,6 +3,7 @@
 @tailwind utilities;
 @tailwind base;
 @tailwind components;
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -16,17 +17,17 @@
   font-style: normal;
 }
 
-.advantGradeFont{
+.advantGradeFont {
   font-family: 'Avant Garde Book BT';
 }
 
-.mask{
+.mask {
   mask-image: url("/assets/mask.svg");
   background-color: #EC4E39;
   mask-repeat: no-repeat;
-  mask-border:2px solid black;
   position: absolute;
 }
+
 /* 
 @media (prefers-color-scheme: dark) {
   :root {

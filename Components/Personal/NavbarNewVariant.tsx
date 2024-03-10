@@ -40,6 +40,7 @@ const NavbarNew = (props: Props) => {
   const [isOutwardHovered, setIsOutwardHovered] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const pathname = usePathname();
+  console.log(pathname.slice(1));
   return (
     <nav className="flex justify-center items-center px-2 py-4">
       <motion.div
@@ -86,8 +87,8 @@ const NavbarNew = (props: Props) => {
         <AnimatePresence>
           <motion.div className="hidden md:flex font-medium gap-1 items-center mr-[5rem] relative">
             <AnimatedLink
-              title={converSlugToTitle(pathname.slice(1))}
-              slug="mask-cursor"
+              title={converSlugToTitle(pathname.slice(1)) || "home"}
+              slug={pathname.slice(1) !== " " ? pathname.slice(1) : "/"}
             />
             <IoIosArrowDown
               className="cursor-pointer"
